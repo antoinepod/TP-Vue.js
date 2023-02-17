@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "firstname": "Jean",
+    "lastname": "Durand",
+    "age": 31,
+    "avatar": "https://randomuser.me/api/portraits/men/73.jpg",
+    "socials": [
+      "https://twitter.com/JeanDurand",
+      "https://instagram.com/JeanDurand",
+      "https://facebook.com/JeanDurand"
+    ]
+  },
+  {
+    "id": 2,
+    "firstname": "Marie",
+    "lastname": "Vannier",
+    "age": 23,
+    "avatar": "https://randomuser.me/api/portraits/women/31.jpg",
+    "socials": [
+      "https://twitter.com/MarieVannier",
+      "https://instagram.com/MarieVannier",
+      "https://facebook.com/MarieVannier",
+      "https://github.com/MVannier"
+    ]
+  },
+  {
+    "id": 3,
+    "firstname": "Axel",
+    "lastname": "Trumas",
+    "age": 26,
+    "avatar": "https://randomuser.me/api/portraits/men/91.jpg",
+    "socials": [
+      "https://twitter.com/AlexTrumas",
+      "https://instagram.com/AlexTrumas"
+    ]
+  }
+]
