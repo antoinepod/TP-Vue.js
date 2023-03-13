@@ -1,5 +1,5 @@
 <script setup>
-import {defineProps} from 'vue';
+import {defineProps, computed} from 'vue';
 
 const props = defineProps({
   animal: {
@@ -8,12 +8,12 @@ const props = defineProps({
   }
 });
 
-const getGenderSymbol = () => {
+const getGenderSymbol = computed(() => {
   if (props.animal.gender === "male")
     return '♂';
   else
     return '♀';
-};
+});
 </script>
 
 <template>
@@ -22,7 +22,7 @@ const getGenderSymbol = () => {
     <div class="infos">
       <h1 class="firstname">{{ props.animal.firstname }}</h1>
       <div>
-        <h2 class="gender">{{ getGenderSymbol() }}</h2>
+        <h2 class="gender">{{ getGenderSymbol }}</h2>
         <h2 class="age">{{ props.animal.age }} ans</h2>
       </div>
       <h2 class="search-for">Recherche: {{ props.animal.searchFor }}</h2>

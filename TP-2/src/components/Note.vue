@@ -1,18 +1,21 @@
 <script setup>
 import {defineProps} from "vue";
 
-const {note, state} = defineProps(['note', 'state']);
+const { note } = defineProps({
+  note: {
+    type: Object,
+    required: true,
+  }
+});
 
 </script>
 
 <template>
-  <div v-if="note.done.toString() === state">
-    <div class="note">
-      <p>{{ note.text }}</p>
-      <div class="buttons">
-        <button v-if="!note.done" class="trash-button" @click="$emit('delete')">🗑</button>
-        <input class="checkbox" :checked="note.done" type="checkbox" @click="$emit('change')">
-      </div>
+  <div class="note">
+    <p>{{ note.text }}</p>
+    <div class="buttons">
+      <button v-if="!note.done" class="trash-button" @click="$emit('delete')">🗑</button>
+      <input class="checkbox" :checked="note.done" type="checkbox" @click="$emit('change')">
     </div>
   </div>
 </template>

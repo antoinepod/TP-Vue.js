@@ -21,10 +21,12 @@ const login = () => {
 <template>
   <div class="container">
     <h1>Login</h1>
-    <input type="email" v-model.trim="email"/>
-    <input type="password" v-model.trim="password"/>
-    <p v-if="error">Email or password incorrect</p>
-    <button @click="login()">Connexion</button>
+    <form>
+      <input type="email" v-model.trim="email"/>
+      <input type="password" v-model.trim="password"/>
+      <p v-if="error">Email or password incorrect</p>
+      <button @click="login()">Connexion</button>
+    </form>
   </div>
 </template>
 

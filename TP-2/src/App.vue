@@ -1,53 +1,65 @@
-<script setup>
-
-import {ref, watch} from "vue";
-import Note from "./components/Note.vue";
-
-const notes = ref([]);
-const newNote = ref("");
-
-const addNote = () => {
-  notes.value.push({
-    id: Math.floor(Math.random() * 100),
-    text: newNote.value,
-    done: false
-  });
-  newNote.value = "";
-};
-
-const removeNote = (index) => {
-  notes.value.splice(index, 1);
-};
-
-const changeNoteState = (index) => {
-  notes.value[index].done = !notes.value[index].done;
-};
-
-</script>
-
-
 <template>
   <div id="app" class="container">
     <h1 class="title">Notes</h1>
-    <input type="text" v-model.trim="newNote"/>
-    <button @click="addNote">Add Note</button>
+    <input type="text" v-model.trim="newNoteInput" @keyup.enter="addNote"/>
+    <button @click="addNote" @keyup.enter="addNote">Add Note</button>
+    {{  doubleAge }}
 
     <p>To do</p>
     <div class="notes-container">
-      <div v-for="(note, index) in notes" :id="note.id">
-        <Note :note="note" state="false" @delete="removeNote(index)" @change="changeNoteState(index)"/>
+      <div class="empty-state" v-if="progressNotes.length <= 0">
+        <p>Aucune note en cours.</p>
+      </div>
+      <div v-for="note in progressNotes" :key="note.id">
+        <Note :note="note" @delete="removeNote(note)" @change="changeNoteState(note)"/>
       </div>
     </div>
 
     <p>Done</p>
     <div class="notes-container">
-      <div v-for="(note, index) in notes" :id="note.id">
-        <Note :note="note" state="true" @delete="removeNote(index)" @change="changeNoteState(index)"/>
+      <div class="empty-state" v-if="doneNotes.length <= 0">
+        <p>Aucune note terminées.</p>
+      </div>
+      <div v-for="note in doneNotes" :key="note.id">
+        <Note :note="note" @delete="removeNote(note)" @change="changeNoteState(note)"/>
       </div>
     </div>
-
   </div>
 </template>
+
+<script setup>
+
+import {computed, ref} from "vue";
+import Note from "./components/Note.vue";
+
+const notes = ref([]);
+const newNoteInput = ref("");
+
+const addNote = () => {
+  notes.value.push({
+    id: Math.floor(Math.random() * 1000),
+    text: newNoteInput.value,
+    done: false
+  });
+  newNoteInput.value = "";
+};
+
+const removeNote = (note) => {
+  notes.value = notes.value.filter(n => n.id !== note.id);
+};
+
+const changeNoteState = (note) => {
+  note.done = !note.done;
+};
+
+const doneNotes = computed(() => {
+  return notes.value.filter((note) => note.done);
+});
+
+const progressNotes = computed(() => {
+  return notes.value.filter((note) => !note.done);
+});
+</script>
 
 <style scoped>
 .container {

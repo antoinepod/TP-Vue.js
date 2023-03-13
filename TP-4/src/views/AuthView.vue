@@ -1,11 +1,13 @@
 <template>
   <div class="container">
     <h1>Connexion</h1>
-    <input type="email" placeholder="Email" v-model.trim="email"/>
-    <input type="password" placeholder="Password" v-model.trim="password"/>
-    <p class="success" v-if="success">{{ success }}</p>
-    <p class="error" v-if="error">{{ error }}</p>
-    <button @click="login()">Se connecter</button>
+    <form @keyup.prevent.enter="login()">
+      <input type="email" placeholder="Email" v-model.trim="email"/>
+      <input type="password" placeholder="Password" v-model.trim="password"/>
+      <p class="success" v-if="success">{{ success }}</p>
+      <p class="error" v-if="error">{{ error }}</p>
+      <button @click="login()" >Se connecter</button>
+    </form>
   </div>
 </template>
 
